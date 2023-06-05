@@ -97,11 +97,15 @@
               document.addEventListener("visibilitychange", handleVisibilityChange);
           }
 
-          function handleVisibilityChange() {
-              if (document.hidden) {
-                  unityInstance.SendMessage("Data Manager", "ForceDisconnect");
-              }
-          }
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                unityInstance.SendMessage("Data Manager", "ForceDisconnect");
+                unityInstance.SendMessage("Data Manager", "OnPause", 1);
+            }
+            else {
+                unityInstance.SendMessage("Data Manager", "OnPause", 0);
+            }
+        }
 
       window.addEventListener('offline', function(){
         unityInstance.SendMessage("Data Manager", "NoNetwork");
