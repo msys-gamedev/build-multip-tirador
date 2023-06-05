@@ -97,11 +97,11 @@
             document.addEventListener("visibilitychange", handleVisibilityChange);
         }
         else {
-            window.addEventListener("blur", handleBlur);
+            window.addEventListener("focus", handleFocus);
         }
 
 
-        function handleBlur() {
+        function handleFocus() {
             unityInstance.SendMessage("Data Manager", "ForceDisconnect");
             unityInstance.SendMessage("Data Manager", "MuteAudio", "OFF");
         }
