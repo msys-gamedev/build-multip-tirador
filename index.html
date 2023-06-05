@@ -101,7 +101,7 @@
         }
 
 
-        function handleFocus() {
+        function MuteAudio() {
             unityInstance.SendMessage("Data Manager", "ForceDisconnect");
             unityInstance.SendMessage("Data Manager", "MuteAudio", "OFF");
         }
