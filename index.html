@@ -99,13 +99,15 @@
         else {
             window.addEventListener("focus", handleFocus);
         }
-        var audio = document.getElementById("myAudio");
 
         function MuteAudio() {
 
-            unityInstance.SendMessage("Data Manager", "ForceDisconnect");
             unityInstance.SendMessage("Data Manager", "MuteAudio");
-            audio.muted = true;
+        }
+
+        function UnMuteAudio() {
+
+            unityInstance.SendMessage("Data Manager", "UnMuteAudio");
         }
 
         function handleVisibilityChange() {
