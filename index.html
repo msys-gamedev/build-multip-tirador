@@ -93,32 +93,29 @@
 
           var timeoutID;
 
-        if (typeof document.hidden !== "undefined") {
-            document.addEventListener("visibilitychange", handleVisibilityChange);
-        }
-        else {
-            window.addEventListener("focus", handleFocus);
-        }
+          if (typeof document.hidden !== "undefined") {
+              document.addEventListener("visibilitychange", handleVisibilityChange);
+          }
 
-        function MuteAudio() {
-
-            unityInstance.SendMessage("Data Manager", "MuteAudio");
-        }
-
-        function UnMuteAudio() {
-
-            unityInstance.SendMessage("Data Manager", "UnMuteAudio");
-        }
-
-        function handleVisibilityChange() {
-            if (document.hidden) {
-                unityInstance.SendMessage("Data Manager", "ForceDisconnect");
-            }
-        }
+          function handleVisibilityChange() {
+              if (document.hidden) {
+                  unityInstance.SendMessage("Data Manager", "ForceDisconnect");
+              }
+          }
 
       window.addEventListener('offline', function(){
         unityInstance.SendMessage("Data Manager", "NoNetwork");
       });
+
+      function MuteAudio() {
+
+          unityInstance.SendMessage("Data Manager", "MuteAudio");
+      }
+
+      function UnMuteAudio() {
+
+          unityInstance.SendMessage("Data Manager", "UnMuteAudio");
+      }
 
 
       function startTimer() {
