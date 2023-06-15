@@ -11,10 +11,13 @@
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=450 height=900></canvas>
       <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
+        <div id="unity-logo-wrapper">
+          <div id="unity-logo"></div>
+        </div>
+        <div id="unity-fill"></div>
       </div>
     </div>
     <script>
@@ -29,9 +32,9 @@
           memoryUrl: buildUrl + "/",
           symbolsUrl: buildUrl + "/",
           streamingAssetsUrl: "StreamingAssets",
-          companyName:  "DefaultCompany",
+          companyName:  "Multisys Technologies Corporation",
           productName: "TRD-Multip",
-          productVersion: "0.1",
+          productVersion: "1",
         };
 
         var container = document.querySelector("#unity-container");
@@ -62,7 +65,7 @@
           canvas.style.width = "450px";
           canvas.style.height = "900px";
         }
-        loadingBar.style.display = "block";
+        loadingBar.style.display = "flex";
 
           var script = document.createElement("script");
           script.src = loaderUrl;
@@ -91,20 +94,20 @@
           };
           document.body.appendChild(script);
 
-          var timeoutID;
+      var timeoutID;
 
-          if (typeof document.hidden !== "undefined") {
-              document.addEventListener("visibilitychange", handleVisibilityChange);
-          }
+      if (typeof document.hidden !== "undefined") {
+          document.addEventListener("visibilitychange", handleVisibilityChange);
+      }
 
-          function handleVisibilityChange() {
-              if (document.hidden) {
-                  MuteAudio();
-              }
-              else {
-                  UnMuteAudio();
-              }
+      function handleVisibilityChange() {
+          if (document.hidden) {
+              MuteAudio();
           }
+          else {
+              UnMuteAudio();
+          }
+      }
 
       window.addEventListener('offline', function(){
         unityInstance.SendMessage("Data Manager", "NoNetwork");
@@ -119,7 +122,6 @@
 
           unityInstance.SendMessage("Data Manager", "UnMuteAudio");
       }
-
 
       function startTimer() {
         timeoutID = window.setTimeout(doInactive, 60000); // set timer to 60 seconds
